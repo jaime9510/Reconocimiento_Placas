@@ -11,7 +11,7 @@ clear all, close all, clc       % inicializa todo
 %-------------------------------------------------------------------------
 
  numero_placas=198;             % para las 198 placas almacenadas
- for i=95:numero_placas          % desde la primera hasta la última
+ for i=1:numero_placas          % desde la primera hasta la última
     % lectura ordenada de las imágenes
     imagen=['.\..\..\Data\1_Fotos_198Carros\carro (',num2str(i),').jpg'];     
     a=imread(imagen);                                   
