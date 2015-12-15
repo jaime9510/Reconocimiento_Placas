@@ -27,7 +27,7 @@ clear all, close all, clc       % inicializa todo
     %figure; imshow(placaUmbralizada); title(['Imagen umbralizada']); pause
     
     % Se erosiona la imagen
-    mse = strel('rectangle', [6, 4]);
+    mse = strel('square', 5);
     %mse = strel('square', 5);
     erode = imerode(placaUmbralizada, mse);  
     %figure; imshow(erode); title(['Imagen erosionada']); pause
@@ -46,12 +46,30 @@ clear all, close all, clc       % inicializa todo
     [x, y] = size(placa);
     result(i) = NUM;
   
-%     for caracter = 1 : NUM
-%         extract = zeros(x, y);
-%         pix = find(L == caracter);
-%         extract(pix) = 1;
-%         %figure; imshow(extract); title(['Imagen final']); pause
-%     end
+    % Se extraen los caracteres de una placa
+    for caracter = 1 : NUM
+         
+        extract = zeros(x, y);
+        pix = find(L == caracter);
+        extract(pix) = 1;
+        %figure; imshow(extract); title(['Imagen final']); pause
+        
+        % Se recortan los caracteres de una placa y se guardan
+        [filas, cols] = find(L == caracter);
+        recorte = extract(min(filas(:)) : max(filas(:)), min(cols(:)) : max(cols(:)));
+        
+        % Se encuentra el complemento del caracter, estos es, se invierten
+        % sus bits para que la letra quede en color negro y el fondo blanco
+        inv = imcomplement(recorte);
+        %figure; imshow(inv); title(['Caracter invertido']); pause
+        
+        % Función para determinar representación ascii del caracter
+        [c, value] = IdentificarCorrelacion(inv);
+        %figure; imshow(inv); title(['Valor ascii: ', c, ', valor = ', num2str(value)]); pause
+        
+        name = ['.\..\..\Data\3_Caracteres_ASCII\carro',num2str(i),'_char',num2str(caracter),'_ascii=',c,'.jpg'];
+        imwrite(inv, name);
+    end
     
  end
  
