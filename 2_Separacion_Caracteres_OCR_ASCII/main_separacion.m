@@ -1,8 +1,3 @@
-%-------------------------------------------------------------------------
-%-------------------- Sistema de Identificación de Placas ----------------
-%-------------------- Estrategia Unificada para el curso PDI -------------
-%-------------------- 1 oct 2015 -----------------------------------------
-%-------------------------------------------------------------------------
 
 clear all, close all, clc       % inicializa todo
 
@@ -28,7 +23,6 @@ clear all, close all, clc       % inicializa todo
     
     % Se erosiona la imagen
     mse = strel('square', 5);
-    %mse = strel('square', 5);
     erode = imerode(placaUmbralizada, mse);  
     %figure; imshow(erode); title(['Imagen erosionada']); pause
     
@@ -52,7 +46,7 @@ clear all, close all, clc       % inicializa todo
         extract = zeros(x, y);
         pix = find(L == caracter);
         extract(pix) = 1;
-        figure; imshow(extract); title(['Imagen final']); pause
+        %figure; imshow(extract); title(['Imagen final']); pause
         
         % Se recortan los caracteres de una placa y se guardan
         [filas, cols] = find(L == caracter);
@@ -61,15 +55,14 @@ clear all, close all, clc       % inicializa todo
         % Se encuentra el complemento del caracter, estos es, se invierten
         % sus bits para que la letra quede en color negro y el fondo blanco
         inv = imcomplement(recorte);
-        figure; imshow(inv); title(['Caracter invertido']); pause
+        %figure; imshow(inv); title(['Caracter invertido']); pause
         
         % Función para determinar representación ascii del caracter
         [c, value] = IdentificarCorrelacion(inv);
-        figure; imshow(inv); title(['Valor ascii: ', c, ', valor = ', num2str(value)]); pause
+        %figure; imshow(inv); title(['Valor ascii: ', c, ', valor = ', num2str(value)]); pause
         
-        name = ['.\..\..\Data\3_Caracteres_ASCII\carro',i,'_char',caracter,
-            'ascii=',c,'.jpg'];
-        imwrite(p, name);
+        name = ['.\..\..\Data\3_Caracteres_ASCII\carro',num2str(i),'_char',num2str(caracter),'_ascii=',c,'.jpg'];
+        imwrite(inv, name);
     end
     
  end

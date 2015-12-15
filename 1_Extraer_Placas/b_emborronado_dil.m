@@ -14,10 +14,3 @@ function b=b_emborronado_dil(a);
          f2 = imdilate(a,ee);           % dilatación
 
         b=reshape(f2,[fil,col,cap]);    % recompone la imagen
-%         
-%         close all
-%          figure(1); imshow([a]); 
-%          figure(2); imshow([b]);         
-%          title(['Dilate square de 20']); impixelinfo
-%          pause
-% close all

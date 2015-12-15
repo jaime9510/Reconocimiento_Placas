@@ -1,8 +1,3 @@
-%-------------------------------------------------------------------------
-%-------------------- Sistema de Identificación de Placas ----------------
-%-------------------- Estrategia Unificada para el curso PDI -------------
-%-------------------- 1 oct 2015 -----------------------------------------
-%-------------------------------------------------------------------------
 
 clear all, close all, clc       % inicializa todo
 
@@ -28,10 +23,8 @@ clear all, close all, clc       % inicializa todo
         recor=floor((fil-col)/4);   % se recorta la imagen 1/4 parte
         a=a(recor:fil,:,:);
     end
-    %figure;
-    %imshow(a)
-    title(['Imagen Original'])
-    %pause(1)
+    
+    %figure; imshow(a); title(['Imagen Original']); pause(1)
     
     %a=imresize(a,0.3); % Usar en caso de carga de memoria por tamaño
 
@@ -43,10 +36,7 @@ clear all, close all, clc       % inicializa todo
 
     b=a_recorte(a,30,10,20,20); % Rutina recorte en porcentaje 
     [fil,col,cap]=size(b);      % a_recorte(a,por_sup,por_inf,por_izq,por_der)
-    %figure;
-    %imshow(b)
-    title(['Imagen original recortada'])
-    %pause(1)
+    %figure; imshow(b); title(['Imagen original recortada']); pause(1)
     
  %------------------------------------------------------------------------
  %----------------- Emborronado de la imagen filtro morfologico  ---------
@@ -55,10 +45,7 @@ clear all, close all, clc       % inicializa todo
     c=b_emborronado_dil(b);   % Rutina de emborronado
     c=b_emborronado_dil(c);   
     c=b_emborronado_dil(c); 
-    %figure;
-    %imshow(c)
-    title(['Imagen emborronada con dilatación'])
-    %pause(1)
+    %figure; imshow(c); title(['Imagen emborronada con dilatación']); pause(1)
     
  %------------------------------------------------------------------------
  %----------------- Emborronado de la imagen con filtros -----------------
@@ -67,21 +54,16 @@ clear all, close all, clc       % inicializa todo
     cc=d_emborronado_esp(c);            % se toma solo el espacial
     cc=d_emborronado_esp(cc);           % mirar rutina
      
-    %figure;
-    %imshow(cc)
-    title(['Imagen emborronada con fitrado espacial'])
-    %pause(1)
+    %figure; imshow(cc); title(['Imagen emborronada con fitrado espacial']); pause(1)
     
  %----------------------------------------------------------------------
  %----------------- Extraen componentes de color -----------------------
  %----------------- que maximizan la placa, esto es, -------------------
  %----------------- h,s,y ----------------------------------------------
  %----------------------------------------------------------------------
+    
     d=c_componentes_color(c);
-    %figure;
-    %imshow(d)
-    title(['Imagen componentes de color maximo h,s,y'])
-    %pause(1)
+    %figure; imshow(d); title(['Imagen componentes de color maximo h,s,y']); pause(1)
     
  %----------------------------------------------------------------------
  %----------------- Binarizado de la Imagen con un  --------------------
@@ -125,14 +107,5 @@ clear all, close all, clc       % inicializa todo
      imwrite(p, name);
      %pause
     
-%     imagen=['.\2_Placas\placa_carro(',num2str(i),').jpg']; 
-%     figure(3);
-%     imshow(p);
-%     title(imagen);
-%      pause  
-%     close all
- 
-     %imwrite(p,imagen,'bmp');
-   % pause(0.01)
  end
  
