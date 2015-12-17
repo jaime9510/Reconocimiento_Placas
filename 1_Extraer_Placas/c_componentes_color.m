@@ -1,4 +1,16 @@
-function c=c_componentes_color(a);
+%--------------------------------------------------------------------------
+%------- Trabajo Final: Extracción de placas, segmentación de caracteres y OCR
+%------- Coceptos básicos de PDI ------------------------------------------
+%------- Por: Jaime A. Londoño Ciro    jaime951@gmail.com -----------------
+%-------      Estudiante Facultad de Ingenieria, UdeA  --------------------
+%-------      CC 1152204237 -----------------------------------------------
+%--------------------------------------------------------------------------
+%-------      Carlos Mario Herrera Acevedo    carlos4505@gmail.com --------
+%-------      Estudiante Facultad de Ingenieria, UdeA  --------------------
+%-------      CC 1040733689 -----------------------------------------------
+%------- Curso Básico de Procesamiento de Imágenes y Visión Artificial-----
+%------- 16 de Diciembre de 2015-------------------------------------------
+%--------------------------------------------------------------------------
 
 %-------------------------------------------------------------------------
 %----------------- Extrae las principales componentes --------------------
@@ -8,7 +20,7 @@ function c=c_componentes_color(a);
 %-----------------  c= imagen de salida              ---------------------
 %-----------------  se devuelve el máximo de b,y y c ---------------------
 %-------------------------------------------------------------------------
-
+function c=c_componentes_color(a);
 
 %----------------------------------------------------------------------
 %----------------- Extraen componentes de color -----------------------

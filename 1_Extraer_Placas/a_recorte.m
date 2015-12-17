@@ -1,4 +1,16 @@
-function b=a_recorte(a,por_sup,por_inf,por_izq,por_der)
+%--------------------------------------------------------------------------
+%------- Trabajo Final: Extracción de placas, segmentación de caracteres y OCR
+%------- Coceptos básicos de PDI ------------------------------------------
+%------- Por: Jaime A. Londoño Ciro    jaime951@gmail.com -----------------
+%-------      Estudiante Facultad de Ingenieria, UdeA  --------------------
+%-------      CC 1152204237 -----------------------------------------------
+%--------------------------------------------------------------------------
+%-------      Carlos Mario Herrera Acevedo    carlos4505@gmail.com --------
+%-------      Estudiante Facultad de Ingenieria, UdeA  --------------------
+%-------      CC 1040733689 -----------------------------------------------
+%------- Curso Básico de Procesamiento de Imágenes y Visión Artificial-----
+%------- 16 de Diciembre de 2015-------------------------------------------
+%--------------------------------------------------------------------------
 
 %-------------------------------------------------------------------------
 %----------------- Recorta una imagen en términos de ---------------------
@@ -11,6 +23,7 @@ function b=a_recorte(a,por_sup,por_inf,por_izq,por_der)
 %-----------------  por_izq = porcentaje izquierda recorte  --------------
 %-----------------  por_der = porcentaje derecha recorte   ---------------
 %-------------------------------------------------------------------------
+function b=a_recorte(a,por_sup,por_inf,por_izq,por_der)
 
 [fil,col,cap]=size(a);
 fil_sup=ceil(por_sup*fil/100);

@@ -1,5 +1,19 @@
+%--------------------------------------------------------------------------
+%------- Trabajo Final: Extracción de placas, segmentación de caracteres y OCR
+%------- Coceptos básicos de PDI ------------------------------------------
+%------- Por: Jaime A. Londoño Ciro    jaime951@gmail.com -----------------
+%-------      Estudiante Facultad de Ingenieria, UdeA  --------------------
+%-------      CC 1152204237 -----------------------------------------------
+%--------------------------------------------------------------------------
+%-------      Carlos Mario Herrera Acevedo    carlos4505@gmail.com --------
+%-------      Estudiante Facultad de Ingenieria, UdeA  --------------------
+%-------      CC 1040733689 -----------------------------------------------
+%------- Curso Básico de Procesamiento de Imágenes y Visión Artificial-----
+%------- 16 de Diciembre de 2015-------------------------------------------
+%--------------------------------------------------------------------------
 
-clear all, close all, clc       % inicializa todo
+clear all, close all, clc       % inicializa todo, se limpia la consola y se
+                                % cierran ventanas abiertas
 
 %-------------------------------------------------------------------------
 %------------------------- Lectura de Fotos en Bucle ---------------------
@@ -8,16 +22,17 @@ clear all, close all, clc       % inicializa todo
  result = zeros(198, 1);
  numero_placas=198;             % para las 198 placas almacenadas
  for i=1:numero_placas          % desde la primera hasta la última
-    % lectura ordenada de las imágenes
+    
+     % lectura ordenada de las imágenes
     imagen=['.\..\..\Data\2_Fotos_198Placas\placaCarro (',num2str(i),').jpg'];     
     a=imread(imagen);
     
     %figure; imshow(a); title(['Imagen Original']); pause
     
     % Se umbraliza la imagen
-    umbral = graythresh(a);
-    placaUmbralizada = im2bw(a, umbral);
-    placaUmbralizada = (placaUmbralizada == 0);
+    umbral = graythresh(a); % se encuentra el umbral para la imagen
+    placaUmbralizada = im2bw(a, umbral); % se binariza la imagen de acuerdo al umbral
+    placaUmbralizada = (placaUmbralizada == 0); % se invierte imagen
     
     %figure; imshow(placaUmbralizada); title(['Imagen umbralizada']); pause
     
@@ -30,21 +45,33 @@ clear all, close all, clc       % inicializa todo
     placa = imclearborder(erode);
     %figure; imshow(placa); title(['Imagen sin bordes']); pause
     
+    % se eliminan objetos de la imagen que tengan menos de 800 pixeles
     pixeles = 800;
     placa = bwareaopen(placa, pixeles);
     %figure; imshow(placa); title(['Imagen con menos ruido']); pause
     
-    % Se separan los caracteres de la placa
+    % Se separan los caracteres de la placa, en l queda la imagen con los
+    % objetos diferenciados y en num queda el numero de elementos en la
+    % imagen
     [L, NUM] = bwlabel(placa);
     
+    % se extrae el tamaño de la imagen
     [x, y] = size(placa);
+    
+    % para cada placa se guarda el numero de elementos reconocidos
     result(i) = NUM;
   
     % Se extraen los caracteres de una placa
     for caracter = 1 : NUM
-         
+        
+        % se crea una matriz del mismo tamaño de la placa
         extract = zeros(x, y);
+        
+        % se encuentran los pixeles que caracterizan un elemento
+        % determinado de la imagen
         pix = find(L == caracter);
+        
+        % se extrae el caracter de la placa
         extract(pix) = 1;
         %figure; imshow(extract); title(['Imagen final']); pause
         
@@ -61,6 +88,8 @@ clear all, close all, clc       % inicializa todo
         [c, value] = IdentificarCorrelacion(inv);
         %figure; imshow(inv); title(['Valor ascii: ', c, ', valor = ', num2str(value)]); pause
         
+        % se guarda el caracter identificado en la placa y en su nombre se
+        % coloca su representación ascii
         name = ['.\..\..\Data\3_Caracteres_ASCII\carro',num2str(i),'_char',num2str(caracter),'_ascii=',c,'.jpg'];
         imwrite(inv, name);
     end

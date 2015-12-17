@@ -1,3 +1,20 @@
+%--------------------------------------------------------------------------
+%------- Trabajo Final: Extracción de placas, segmentación de caracteres y OCR
+%------- Coceptos básicos de PDI ------------------------------------------
+%------- Por: Jaime A. Londoño Ciro    jaime951@gmail.com -----------------
+%-------      Estudiante Facultad de Ingenieria, UdeA  --------------------
+%-------      CC 1152204237 -----------------------------------------------
+%--------------------------------------------------------------------------
+%-------      Carlos Mario Herrera Acevedo    carlos4505@gmail.com --------
+%-------      Estudiante Facultad de Ingenieria, UdeA  --------------------
+%-------      CC 1040733689 -----------------------------------------------
+%------- Curso Básico de Procesamiento de Imágenes y Visión Artificial-----
+%------- 16 de Diciembre de 2015-------------------------------------------
+%--------------------------------------------------------------------------
+
+%---- Funcion para emborronar una imagen ----------------------------------
+% tiene como parametro de entrada la imagen que se desea emborronar
+% y como parametro de salida la imagen emborronada
 function b=emborronado_esp(a);
 
 %-------------------------------------------------------------------------
